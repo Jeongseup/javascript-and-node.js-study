@@ -1,11 +1,15 @@
 // CommonJS, every file is module (by default)
-// Modules
-const john = 'john'
-const peter = 'peter'
+// Modules - Encapsulated Code (only share minimum)
 
-const sayHi = (name) => {
-    console.log(`Hello there ${name}`)
-}
+const names = require('./4-names')
+const sayHi = require('./5-utils')
 
-sayHi('seup')
-sayHi(john)
+// ipmort 할 떄 대체명을 사용할 수 있다
+const data = require('./6-alternative-flavor')
+// export 하지 않아도 코드가 전부 실행된다
+require('./7-mind-grenade')
+
+console.log(data)
+
+sayHi(names['john'])
+sayHi(names.peter)
