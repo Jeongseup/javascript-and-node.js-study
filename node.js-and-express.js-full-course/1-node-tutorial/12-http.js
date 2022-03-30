@@ -3,6 +3,7 @@ const http = require('http')
 const server = http.createServer((req, res) => {
     // giant object about req info
     // console.log(req)
+    console.log('request event')
 
     if (req.url === '/') {
         res.end('Welcome to our home page')
@@ -16,4 +17,6 @@ const server = http.createServer((req, res) => {
     }
 })
 
-server.listen(3000)
+server.listen(3000, () => {
+    console.log('Server listening on port : 3000 ...')
+})

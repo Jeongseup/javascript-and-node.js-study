@@ -1,19 +1,19 @@
-// npm - global command, comes with node
-// npm --verison
+const http = require('http')
+const fs = require('fs')
 
-// local dependency - use it only it this particular project
-// npm i <packageName>
+http.createServer((req, res) => {
+    // 파일 통으로 보냄
+    // const text = fs.readFileSync('./content/big.txt', 'utf-8')
+    // res.end(text)
 
-// global depedency - use it in any project
-// npm install -g <packageName>
-// sudo install -g <packageName> (mac)
+    const fileStream = fs.createReadStream('./content/big.txt', 'utf8')
 
-// package.json - manifest file (stores important info about project/package)
-// npm init (step by step, press enter to skip)
-// npm init -y (everything default)
+    fileStream.on('open', () => {
+        // file chunk == pipe
+        fileStream.pipe(res)
+    })
 
-const _ = require('lodash')
-
-const items = [1, [2, [3, [4]]]]
-const newItems = _.flattenDeep(items)
-console.log(newItems)
+    fileStream.on('error', () => {
+        res.end(err)
+    })
+}).listen(5000)
